@@ -11,6 +11,7 @@ import CoreData
 
 func addAllPokemon() {
     
+    createPokemon(name: "Venonat", imageName: "venonat")
     createPokemon(name: "Mew", imageName: "mew")
     createPokemon(name: "Meowth", imageName: "meowth")
     createPokemon(name: "Bullbasaur", imageName: "bullbasaur")
@@ -25,7 +26,6 @@ func addAllPokemon() {
     createPokemon(name: "Rattata", imageName: "rattata")
     createPokemon(name: "Snorlax", imageName: "snorlax")
     createPokemon(name: "Squirtle", imageName: "squirtle")
-    createPokemon(name: "Venonant", imageName: "venonant")
     createPokemon(name: "Weedle", imageName: "weedle")
     createPokemon(name: "Zubat", imageName: "zubat")
     
