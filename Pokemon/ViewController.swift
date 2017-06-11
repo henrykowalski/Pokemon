@@ -11,9 +11,19 @@ import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
+    @IBOutlet weak var mapView: MKMapView!
+    
+    var updateCount = 0
+    
+    var manager = CLLocationManager()
+    
+    var pokemons : [Pokemon] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    
+        pokemons = getAllPokemon()
         
         manager.delegate = self
         
@@ -60,13 +70,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             manager.stopUpdatingLocation()
         }
     }
-    
-    
-    @IBOutlet weak var mapView: MKMapView!
-    
-    var updateCount = 0
-    
-    var manager = CLLocationManager()
     
     
     override func didReceiveMemoryWarning() {
