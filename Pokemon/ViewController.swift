@@ -31,12 +31,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("we made it")
+        
+        if updateCount < 3 {
+        
+        let region = MKCoordinateRegionMakeWithDistance(manager.location!.coordinate, 400, 400)
+        
+        mapView.setRegion(region, animated: false)
+        updateCount += 1
+        } else {
+            manager.stopUpdatingLocation()
+        }
     }
     
     
     @IBOutlet weak var mapView: MKMapView!
     
+    var updateCount = 0
     
     var manager = CLLocationManager()
     
@@ -46,6 +56,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func centerTapped(_ sender: Any) {
+        
+        if let coord = manager.location?.coordinate {
+        
+        let region = MKCoordinateRegionMakeWithDistance(coord, 400, 400)
+        
+        mapView.setRegion(region, animated: true)
+        }
+    }
 
 }
 
