@@ -11,7 +11,9 @@ import CoreData
 
 func addAllPokemon() {
     
-    createPokemon(name: "Maxbublifuk", imageName: "max512")
+    createPokemon(name: "Maxíčekbublifuk", imageName: "max512")
+    createPokemon(name: "Mad Bob", imageName: "robik512")
+    createPokemon(name: "Hadzik Fizlik", imageName: "hadzi512")
     createPokemon(name: "Jollipuff", imageName: "joll512")
     createPokemon(name: "Jirkazombie", imageName: "jirka512")
     createPokemon(name: "AndrzejTovarnik", imageName: "andrzej512")

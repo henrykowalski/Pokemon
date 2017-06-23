@@ -46,7 +46,7 @@
                                 </constraints>
                                 <state key="normal" image="pokeball"/>
                                 <connections>
-                                    <segue destination="uk3-Hk-kNC" kind="presentation" id="J7K-mu-SwR"/>
+                                    <segue destination="uk3-Hk-kNC" kind="presentation" identifier="pokedexSegue" id="J7K-mu-SwR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -86,7 +86,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dNw-W4-lFu">
-                                <rect key="frame" x="162.5" y="597" width="50" height="50"/>
+                                <rect key="frame" x="163" y="597" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="IZX-Mk-7WJ"/>
                                     <constraint firstAttribute="width" constant="50" id="gZG-Go-gmr"/>

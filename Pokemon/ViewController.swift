@@ -125,17 +125,37 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {(timer) in
             if let coord = self.manager.location?.coordinate {
+                
+                let pokemon = (view.annotation as! PokeAnnotation).pokemon
+                
                 if MKMapRectContainsPoint(mapView.visibleMapRect, MKMapPointForCoordinate(coord)) {
-                    print("Can catch the pokemon")
+                    // print("Can catch the pokemon")
+                
                     
-                    let pokemon = (view.annotation as! PokeAnnotation).pokemon
                     pokemon.caught = true
                     (UIApplication.shared.delegate as! AppDelegate).saveContext()
                     
                     mapView.removeAnnotation(view.annotation!)
                     
+                    let alertVC = UIAlertController(title: "Jupí! Velká Gratulace!", message: "Chytil(a) jsi \(pokemon.name!). Jseš Pokeblij master!", preferredStyle: .alert)
+                    
+                    let pokedexAction = UIAlertAction(title: "Trezor", style: .default, handler: { (action) in
+                    self.performSegue(withIdentifier: "pokedexSegue", sender: nil)
+                    
+                    })
+                    alertVC.addAction(pokedexAction)
+                    
+                    
+                    let OKaction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertVC.addAction(OKaction)
+                    self.present(alertVC, animated: true, completion: nil)
+                    
                 } else {
-                    print("Sorry Pokemon is too far away...")
+                    // print("Sorry Pokemon is too far away...")
+                    let alertVC = UIAlertController(title: "Haha, tůdle!", message: "Jseš příliš daleko, abys chytil \(pokemon.name!). Pojď blíž!", preferredStyle: .alert)
+                    let OKaction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertVC.addAction(OKaction)
+                    self.present(alertVC, animated: true, completion: nil)
                 }
             }
         })
