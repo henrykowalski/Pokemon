@@ -29,39 +29,51 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             
-            mapView.delegate = self
-            
-            mapView.showsUserLocation = true
-            
-            manager.startUpdatingLocation()
-            
-            Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
-                // Spawn a Pokemon
-                
-                // anno stands for annotation
-                
-            
-                if let coord = self.manager.location?.coordinate {
-            
-                    let pokemon = self.pokemons[Int(arc4random_uniform(UInt32(self.pokemons.count)))]
-                    
-                    let anno = PokeAnnotation(coord: coord, pokemon: pokemon)
-                    anno.coordinate = coord
-                    let randoLat = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
-                    let randoLon = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
-                    anno.coordinate.latitude += randoLat
-                    anno.coordinate.longitude += randoLon
-                    
-                    self.mapView.addAnnotation(anno)
-                }
-                
-            })
+            setUp()
             
         } else {
             manager.requestWhenInUseAuthorization()
         }
         
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            
+            setUp()
+            
+        }
+    }
+    
+    func setUp() {
+        mapView.delegate = self
         
+        mapView.showsUserLocation = true
+        
+        manager.startUpdatingLocation()
+        
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { (timer) in
+            // Spawn a Pokemon
+            
+            // anno stands for annotation
+            
+            
+            if let coord = self.manager.location?.coordinate {
+                
+                let pokemon = self.pokemons[Int(arc4random_uniform(UInt32(self.pokemons.count)))]
+                
+                let anno = PokeAnnotation(coord: coord, pokemon: pokemon)
+                anno.coordinate = coord
+                let randoLat = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
+                let randoLon = (Double(arc4random_uniform(200)) - 100.0) / 50000.0
+                anno.coordinate.latitude += randoLat
+                anno.coordinate.longitude += randoLon
+                
+                self.mapView.addAnnotation(anno)
+            }
+            
+        })
+
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

@@ -35,9 +35,9 @@ class PokedexViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "CAUGHT"
+            return "CHYCENÍ:"
         } else {
-            return "UNCAUGHT"
+            return "STÁLE TI UNIKAJÍ:"
         }
     }
     
